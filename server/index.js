@@ -7,7 +7,6 @@ require('dotenv').config();
 const app = express();
 const server = http.createServer(app);
 
-// Use environment variables for port and CORS origins
 const PORT = process.env.PORT || 5000;
 const corsOrigins = process.env.CORS_ORIGINS.split(',');
 
@@ -19,7 +18,6 @@ const io = new Server(server, {
   },
 });
 
-// CORS configuration for Express
 const corsOptions = {
   origin: corsOrigins,
   methods: ['GET', 'POST'],

@@ -14,7 +14,6 @@ interface TextData {
   position: [number, number];
 }
 
-// Use environment variables for the API and WebSocket URLs
 const API_URL = process.env.VITE_API_URL || 'http://localhost:5000';
 const SOCKET_URL = process.env.VITE_SOCKET_URL || 'http://localhost:5000';
 
