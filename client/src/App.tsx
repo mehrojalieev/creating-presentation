@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'; 
 import { io } from 'socket.io-client';
 import axios from 'axios';
 import './App.scss';
@@ -14,8 +14,12 @@ interface TextData {
   position: [number, number];
 }
 
-// Start the WebSocket
-const socket = io('http://localhost:5000');
+// Use environment variables for the API and WebSocket URLs
+const API_URL = process.env.VITE_API_URL || 'http://localhost:5000';
+const SOCKET_URL = process.env.VITE_SOCKET_URL || 'http://localhost:5000';
+
+// Start the WebSocket connection
+const socket = io(SOCKET_URL);
 
 function App() {
   const [nickname, setNickname] = useState<string>('');
@@ -25,14 +29,14 @@ function App() {
   const [texts, setTexts] = useState<TextData[]>([]); 
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/presentations')
+    axios.get(`${API_URL}/api/presentations`)
       .then(response => setPresentations(response.data))
       .catch(error => console.error('Error fetching presentations:', error));
   }, []);
 
   const createPresentation = async (title: string) => {
     const newPresentation = { title, creator: nickname };
-    const response = await axios.post('http://localhost:5000/api/presentations', newPresentation);
+    const response = await axios.post(`${API_URL}/api/presentations`, newPresentation);
     setCurrentPresentation(response.data);
     socket.emit('join-presentation', { presentationId: response.data.id, nickname }); 
   };

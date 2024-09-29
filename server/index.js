@@ -2,32 +2,36 @@ const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
 const cors = require('cors');
+require('dotenv').config(); 
 
 const app = express();
 const server = http.createServer(app);
 
+// Use environment variables for port and CORS origins
+const PORT = process.env.PORT || 5000;
+const corsOrigins = process.env.CORS_ORIGINS.split(',');
+
+// Socket.IO setup with CORS
 const io = new Server(server, {
   cors: {
-    origin: ['http://localhost:3000', 'http://localhost:5173'], // Allow multiple origins
+    origin: corsOrigins, 
     methods: ['GET', 'POST'],
   },
 });
 
 // CORS configuration for Express
 const corsOptions = {
-  origin: ['http://localhost:3000', 'http://localhost:5173'], 
+  origin: corsOrigins,
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type'],
 };
 
-app.use(cors(corsOptions)); 
+app.use(cors(corsOptions));
 app.use(express.json());
 
-let presentations = []; 
+let presentations = [];
 let users = {};
 
-
-// Create a new presentation
 app.post('/api/presentations', (req, res) => {
   const { title, creator } = req.body;
   const newPresentation = {
@@ -85,6 +89,6 @@ io.on('connection', (socket) => {
   });
 });
 
-server.listen(5000, () => {
-  console.log('Server is running on port 5000');
+server.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
