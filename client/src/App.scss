@@ -1,0 +1,91 @@
+.container {
+  text-align: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  input {
+    padding: 10px;
+    width: 20%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 10px 0;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+}
+
+.presentation-card {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
+}
+
+.presentation-container {
+  padding: 20px;
+}
+
+.presentation-area {
+  border: 2px solid #ddd;
+  height: 500px;
+  position: relative;
+  margin-top: 20px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  overflow: auto;
+}
+
+.text-block {
+  background-color: #fff;
+  border: 2px solid #007bff;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: move;
+  font-family: Arial, sans-serif;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: scale(1.02);
+    border-color: #0056b3;
+  }
+}
+
+.text-input {
+  padding: 10px;
+  width: 80%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 10px 0;
+}
+
+.add-text-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+}
