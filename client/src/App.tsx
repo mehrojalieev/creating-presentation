@@ -14,8 +14,8 @@ interface TextData {
   position: [number, number];
 }
 
-const API_URL = process.env.VITE_API_URL || 'http://localhost:5000';
-const SOCKET_URL = process.env.VITE_SOCKET_URL || 'http://localhost:5000';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'http://localhost:5000';
 
 // Start the WebSocket connection
 const socket = io(SOCKET_URL);
